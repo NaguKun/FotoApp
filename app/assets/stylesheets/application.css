@@ -1,0 +1,120 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+.navbar {
+	background-color: #4267B2;
+}
+
+#avatar {
+	border: 1px solid white;
+	border-radius: 50%;
+	background-color: white;
+	color: #4267B2;
+	font-size: 12px;
+	padding: 5px;
+}
+.social-link {
+	border-radius: 0 !important; /* Forces the border radius to be 0 */
+  }
+  
+  .sidebar {
+    width: 250px;
+    transition: all 0.3s ease;
+  }
+
+  .social-link {
+    transition: all 0.3s ease;
+  }
+
+  .hover-effect:hover {
+    transform: translateX(5px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .facebook { color: #3b5998; }
+  .twitter { color: #1da1f2; }
+  .instagram { color: #e1306c; }
+  .linkedin { color: #0077b5; }
+  .github { color: #333; }
+  .youtube { color: #ff0000; }
+
+  .social-link:hover {
+    color: #fff !important;
+  }
+
+  .facebook:hover { background-color: #3b5998; }
+  .twitter:hover { background-color: #1da1f2; }
+  .instagram:hover { background-color: #e1306c; }
+  .linkedin:hover { background-color: #0077b5; }
+  .github:hover { background-color: #333; }
+  .youtube:hover { background-color: #ff0000; }
+
+  .nav-link {
+    transition: all 0.3s ease;
+  }
+
+  .hover-effect:hover {
+    transform: translateX(5px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #f8f9fa;
+  }
+
+  .nav-link.active {
+    background-color: #007bff;
+    color: #fff !important;
+  }
+
+  .nav-link.active:hover {
+    background-color: #0056b3;
+  }
+
+  .album-cover {
+    perspective: 1000px;
+  }
+
+  .album-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease-out;
+  }
+
+  .album-image-1 {
+    z-index: 3;
+  }
+
+  .album-image-2 {
+    z-index: 2;
+    transform: rotate(5deg) translateY(5px);
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+  }
+
+  .album-image-3 {
+    z-index: 1;
+    transform: rotate(-5deg) translateY(10px);
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+  }
+
+  .album-cover:hover .album-image-2 {
+    transform: rotate(10deg) translateY(10px);
+  }
+
+  .album-cover:hover .album-image-3 {
+    transform: rotate(-10deg) translateY(20px);
+  }

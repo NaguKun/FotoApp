@@ -1,0 +1,59 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-8 col-lg-5">
+      <h1 class="text-center mb-4">Fotobook Login</h1>
+      
+      <div class="d-flex justify-content-center mb-4">
+      <%- if devise_mapping.omniauthable? %>
+      <%- resource_class.omniauth_providers.each do |provider| %>
+        <% if provider.to_s == "google_oauth2" %>
+          <%= button_to omniauth_authorize_path(resource_name, provider), class: "btn p-0 mx-2", data: { turbo: false } do %>
+            <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Sign in with Google" class="img-fluid"/>
+          <% end %>
+        <% elsif provider.to_s == "facebook" %>
+          <%= button_to omniauth_authorize_path(resource_name, provider), class: "btn p-0 mx-2", data: { turbo: false } do %>
+            <img src="https://img.icons8.com/color/48/000000/facebook.png" alt="Sign in with Facebook" class="img-fluid"/>
+          <% end %>
+        <% else %>
+          <%= button_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), data: { turbo: false } %><br />
+        <% end %>
+      <% end %>
+    <% end %>
+        <a href="#" class="mx-2"><img src="https://img.icons8.com/color/48/000000/twitter-circled--v1.png" alt="Twitter" class="img-fluid"/></a>
+      </div>
+      
+      <div class="card shadow-sm">
+        <div class="card-body p-4">
+          <img class="profile-img rounded-circle mx-auto d-block mb-4" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120" alt="Profile Image" width="120" height="120">
+          
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'needs-validation', novalidate: true }) do |f| %>
+            <div class="mb-3">
+              <%= f.label :email, class: "form-label" %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Enter your email", required: true %>
+            </div>
+            
+            <div class="mb-3">
+              <%= f.label :password, class: "form-label" %>
+              <%= f.password_field :password, autocomplete: "current-password", class: "form-control", placeholder: "Enter your password", required: true %>
+            </div>
+            
+            <% if devise_mapping.rememberable? %>
+              <div class="mb-3 form-check">
+                <%= f.check_box :remember_me, class: "form-check-input" %>
+                <%= f.label :remember_me, class: "form-check-label" %>
+              </div>
+            <% end %>
+            
+            <div class="d-grid mb-3">
+              <%= f.submit "Login", class: "btn btn-primary btn-lg" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      
+      <div class="text-center mt-3">
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+  </div>
+</div>

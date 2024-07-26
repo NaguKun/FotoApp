@@ -1,0 +1,25 @@
+// Place all the styles related to the Albums controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.album-container {
+    display: block;
+    height: 200px;
+	position: relative;
+}
+
+.photo-number{
+	width: 100px;
+	height: 100px;
+	justify-content: center;
+	align-items: center;
+	border-radius: 100%;
+	text-align: center;
+	display: flex;
+
+	background-color: rgba(0,0,0,0.4);
+	color: white;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}

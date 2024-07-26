@@ -1,0 +1,8 @@
+<h1>Albums#edit</h1>
+<p>Find me in app/views/albums/edit.html.erb</p>
+<h1>Editing Album</h1>
+
+<%= render 'form', album: @album %>
+
+<%= link_to 'Show', @album %> |
+<%= link_to 'Back', profile_album_path(current_user) %>

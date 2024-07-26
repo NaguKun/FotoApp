@@ -1,0 +1,111 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-10 mt-4">
+      <div class="d-flex justify-content-center mb-3">
+        <div class="btn-group" role="group" aria-label="Toggle between photos and albums">
+          <input type="radio" class="btn-check" name="btnradio" id="photo-button" autocomplete="off" checked>
+          <label class="btn btn-outline-dark" for="photo-button">PHOTO</label>
+        </div>
+      </div>
+
+      <div id="photo-container">
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+          <% @photos.each do |photo| %>
+            <div class="col">
+              <div class="card h-100">
+                <div class="row g-0 h-100">
+                  <div class="col-6">
+                    <%= image_tag photo.photo_image, class: "img-fluid rounded-start h-100 object-fit-cover", alt: photo.title, data: { bs_toggle: "modal", bs_target: "#photoModal" } %>
+                  </div>
+                  <div class="col-6">
+                    <div class="card-body d-flex flex-column h-100">
+                      <div class="d-flex align-items-center mb-2">
+                        <div class="bg-primary text-white rounded-circle me-2 p-2">
+                          <%= photo.user.firstname[0] %><%= photo.user.lastname[0] %>
+                        </div>
+                        <h6 class="card-title mb-0">
+                          <a href="<%= profile_photo_path(photo.user) %>" class="text-decoration-none">
+                            <%= photo.user.firstname %> <%= photo.user.lastname %>
+                          </a>
+                        </h6>
+                      </div>
+                      <h5 class="card-title text-truncate"><%= photo.title %></h5>
+                      <p class="card-text flex-grow-1 overflow-hidden"><%= photo.description %></p>
+                      <div class="d-flex justify-content-between align-items-center mt-auto">
+                        <div>
+                          <% if user_signed_in? %>
+                            <% if photo.reactions.exists?(user: current_user) %>
+                              <%= button_to photo_reaction_path(photo), method: :delete, class: "btn btn-link p-0" do %>
+                                <i class="fas fa-heart text-danger"></i>
+                              <% end %>
+                            <% else %>
+                              <%= button_to photo_reaction_path(photo), method: :post, class: "btn btn-link p-0" do %>
+                                <i class="far fa-heart text-danger"></i>
+                              <% end %>
+                            <% end %>
+                          <% else %>
+                            <%= link_to new_user_session_path, class: "btn btn-link p-0" do %>
+                              <i class="far fa-heart text-danger"></i>
+                            <% end %>
+                          <% end %>
+                          <small class="text-muted"><%= photo.reactions.count %></small>
+                        </div>
+                        <small class="text-muted"><%= l photo.created_at, format: :short %></small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render 'layouts/popup' %>
+
+<!-- Photo Modal -->
+<div class="modal fade" id="photoModal" tabindex="-1" aria-labelledby="photoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="photoModalLabel">Photo Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <img src="" class="img-fluid w-100 mb-3" id="modalPhotoImage" alt="Photo">
+        <p id="modalPhotoDescription"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .card-text {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Photo Modal
+    const photoModal = document.getElementById('photoModal');
+    photoModal.addEventListener('show.bs.modal', function (event) {
+      const button = event.relatedTarget;
+      const card = button.closest('.card');
+      const photoSrc = button.src;
+      const photoDescription = card.querySelector('.card-text').textContent;
+      
+      const modalImage = photoModal.querySelector('#modalPhotoImage');
+      const modalDescription = photoModal.querySelector('#modalPhotoDescription');
+      
+      modalImage.src = photoSrc;
+      modalDescription.textContent = photoDescription;
+    });
+  });
+</script>

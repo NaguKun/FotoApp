@@ -1,0 +1,52 @@
+<div class="container-fluid py-5 bg-light">
+  <div class="row justify-content-center">
+    <div class="col-xl-10"> 
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <%= render 'layouts/profile', locals: {user: @user} %>
+
+          <div class="mt-4">
+            <%= link_to new_album_path, class: "btn btn-primary mb-4" do %>
+              <i class="fas fa-plus-circle me-2"></i>Add Album
+            <% end %>
+          </div>
+          <% if @albums.any? %>
+          <div class="row g-4">
+            <% @albums.each do |album| %>
+              <% if album.sharing_mode == "public_mode" || album.user_id == current_user.id %>
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                  <div class="card h-100 shadow-sm">
+                    <div class="position-relative">
+                      <%= image_tag album.album_images[0], class: "card-img-top", alt: album.title, style: "height: 200px; object-fit: cover;" %>
+                      <div class="position-absolute top-0 start-0 m-2">
+                        <span class="badge bg-primary">
+                          <i class="fas fa-images me-1"></i><%= album.album_images.size %>
+                        </span>
+                      </div>
+                      <% if album.sharing_mode == "private_mode" %>
+                        <div class="position-absolute top-0 end-0 m-2">
+                          <span class="badge bg-warning text-dark">
+                            <i class="fas fa-lock"></i> Private
+                          </span>
+                        </div>
+                      <% end %>
+                      <%= link_to edit_album_path(album), class: "btn btn-sm btn-outline-light position-absolute bottom-0 end-0 m-2" do %>
+                        <i class="fas fa-edit"></i> Edit
+                      <% end %>
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title text-center"><%= album.title %></h5>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+          <% else %>
+            <%= render 'empty' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

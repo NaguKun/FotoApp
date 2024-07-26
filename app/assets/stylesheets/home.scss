@@ -1,0 +1,106 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.home {
+
+	.container-fluid {
+		background-color: #f3f3f3;
+		position: relative;
+	}
+
+	.post-container{
+		background-color: white;
+	}
+
+	#options{
+		display: inline;
+		position: absolute;
+		top: 10%;
+		z-index: 100;
+	}
+
+	#options a{
+		color: grey;
+		font-weight: bold;
+		text-decoration: none;
+	}
+
+	#options a.focus{
+		color: #4267B2;
+	}
+
+	button {
+		border: 2px solid #4267B2;
+		border-radius: 2px;
+		font-weight: bold;
+		color: #4267B2;
+		background-color: white;
+		margin: 10px 0px;
+	}
+
+	button.active{
+		color: white;
+		background-color: #4267B2;
+	}
+
+	img {
+		height: 270px;
+	}
+
+	.post-content-container{
+		height: 270px;
+	}
+
+	.post-image{
+		height: 100%;
+	}
+
+	.post-content{
+		display: flex;
+		flex-direction: column;
+	}
+
+	.post-owner .ava {
+		border-radius: 50%;
+		background-color: #4267B2;
+		color: white;
+		font-size: 12px;
+		padding: 5px;
+	}
+
+	.post-header {
+		font-weight: bold;
+		font-size: 15px;
+	}
+
+	.post-owner a {
+		color: #4267B2;
+		font-size: 10px;
+		text-decoration: none;
+	}
+
+	.post-body {
+		height: 100px;
+		overflow-y: auto;
+	}
+
+	.post-footer {
+		color: lightgray;
+		bottom: 5px;
+		display: flex;
+		justify-content: space-between;
+		margin-top: auto;
+	}
+
+	.post-reaction {
+		cursor: pointer;
+	}
+
+	.post-reaction.active{
+		color: #4267B2;
+	}
+
+	.album-container {
+		display: none;
+	}
+}
